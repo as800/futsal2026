@@ -299,6 +299,18 @@
     border-radius:6px;
     padding:14px 16px;
     margin-bottom:10px;
+    transition:background 0.2s ease,border-color 0.2s ease,box-shadow 0.2s ease;
+  }
+  .match-card.is-completed{
+    background:linear-gradient(135deg, rgba(242,183,5,0.18), rgba(15,71,61,0.96) 58%);
+    border-color:rgba(242,183,5,0.55);
+    box-shadow:inset 4px 0 0 var(--gold),0 12px 28px rgba(0,0,0,0.18);
+  }
+  .match-card.is-completed .summary-col h4,
+  .match-card.is-completed .entry-static,
+  .match-card.is-completed .entry-static .muted{
+    color:var(--line);
+    opacity:0.95;
   }
   .match-head{
     display:flex;align-items:center;justify-content:center;gap:14px;
@@ -1013,6 +1025,10 @@ function teamOptionsFor(homeIdx, awayIdx, selected){
   ).join('');
 }
 
+function isMatchScored(mt){
+  return mt.sh !== null && mt.sa !== null && mt.sh !== '' && mt.sa !== '';
+}
+
 function renderSchedule(){
   const list = document.getElementById('schedule-list');
   list.innerHTML = '';
@@ -1025,7 +1041,7 @@ function renderSchedule(){
 
     day.matches.forEach((mt, mi)=>{
       const card = document.createElement('div');
-      card.className = 'match-card';
+      card.className = `match-card${isMatchScored(mt) ? ' is-completed' : ''}`;
 
       let goalsHtml;
       if(isAdmin){
@@ -1103,6 +1119,7 @@ function attachScheduleListeners(){
       const di=+e.target.dataset.di, mi=+e.target.dataset.mi, side=e.target.dataset.side;
       const v = e.target.value;
       schedule[di].matches[mi][side] = v==='' ? null : Math.max(0, parseInt(v)||0);
+      e.target.closest('.match-card').classList.toggle('is-completed', isMatchScored(schedule[di].matches[mi]));
       renderStandings();
       queueSave();
     });
