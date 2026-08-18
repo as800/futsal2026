@@ -387,6 +387,64 @@
   .goals-cell{font-family:'Anton',sans-serif;font-size:20px;color:var(--line);}
   .rank-1 .goals-cell{color:var(--gold);}
 
+  /* Peraturan */
+  .rules-meta{
+    font-family:'Inter',sans-serif;font-size:13.5px;color:var(--line);opacity:0.75;
+    margin:-6px 0 26px;line-height:1.6;
+  }
+  .rule-section{
+    background:var(--panel);
+    border:1px solid rgba(244,241,232,0.15);
+    border-radius:6px;
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+  .rule-toggle{
+    width:100%;
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    background:transparent;border:none;cursor:pointer;
+    padding:16px 18px;
+    text-align:left;
+  }
+  .rule-toggle-left{display:flex;align-items:center;gap:12px;}
+  .rule-num{
+    font-family:'Anton',sans-serif;font-size:15px;color:var(--court-dark);
+    background:var(--gold);
+    width:28px;height:28px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .rule-toggle h4{
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;
+    font-size:16px;letter-spacing:0.5px;text-transform:uppercase;
+    color:var(--line);margin:0;
+  }
+  .rule-chevron{
+    font-family:'Barlow Condensed',sans-serif;color:var(--muted);font-size:18px;
+    transition:transform 0.2s ease;flex-shrink:0;
+  }
+  .rule-section.open .rule-chevron{transform:rotate(180deg);color:var(--gold);}
+  .rule-body{
+    display:none;
+    padding:0 18px 18px 58px;
+    font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;
+    color:var(--line);opacity:0.92;
+  }
+  .rule-section.open .rule-body{display:block;}
+  .rule-body ul, .rule-body ol{margin:0;padding-left:18px;}
+  .rule-body li{margin-bottom:8px;}
+  .rule-body li:last-child{margin-bottom:0;}
+  .rule-body .sub{margin-top:6px;margin-bottom:6px;}
+  .rule-points{
+    display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 12px;
+  }
+  .rule-points span{
+    font-family:'Barlow Condensed',sans-serif;font-size:13px;
+    background:rgba(244,241,232,0.06);border:1px solid rgba(244,241,232,0.15);
+    border-radius:3px;padding:5px 10px;
+  }
+  .rule-points b{color:var(--gold);}
+
   @media (max-width:640px){
     h1{font-size:32px;}
     thead th{font-size:11px;padding:10px 3px;}
@@ -417,6 +475,7 @@
     <button class="tab-btn active" data-tab="teams">Klasemen Tim</button>
     <button class="tab-btn" data-tab="scorers">Klasemen Top Skor</button>
     <button class="tab-btn" data-tab="schedule">Jadwal &amp; Summary</button>
+    <button class="tab-btn" data-tab="rules">Peraturan</button>
   </div>
 
   <div class="tab-panel active" id="panel-teams">
@@ -475,6 +534,160 @@
       <span class="lock-note" id="schedule-lock-note"><i>&#128274;</i> Login admin untuk mengisi hasil</span>
     </h2>
     <div class="schedule-list" id="schedule-list"></div>
+  </div>
+
+  <div class="tab-panel" id="panel-rules">
+    <h2 class="section-title"><span class="st-left">Ketentuan Umum &amp; Peraturan</span></h2>
+    <p class="rules-meta">
+      Liga Futsal TIK 2026 &middot; Dalam rangka memperingati HUT Kemerdekaan RI ke-81<br>
+      Direktorat Teknologi Informasi dan Komunikasi
+    </p>
+
+    <div id="rules-accordion">
+
+      <div class="rule-section">
+        <button class="rule-toggle">
+          <div class="rule-toggle-left"><span class="rule-num">1</span><h4>Pelaksanaan Lomba</h4></div>
+          <span class="rule-chevron">&#9662;</span>
+        </button>
+        <div class="rule-body">
+          <ul>
+            <li>Pertandingan dilaksanakan pada hari Selasa, 18 Agustus 2026 s.d. Kamis, 27 Agustus 2026.</li>
+            <li>Tempat pertandingan di lapangan futsal KPDJP.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rule-section">
+        <button class="rule-toggle">
+          <div class="rule-toggle-left"><span class="rule-num">2</span><h4>Sistem Liga</h4></div>
+          <span class="rule-chevron">&#9662;</span>
+        </button>
+        <div class="rule-body">
+          <ul>
+            <li>Menggunakan sistem pertandingan <b>Liga Satu Putaran</b> (setiap tim hanya bertemu satu kali).</li>
+            <li>Jika hasil imbang, tidak ada tambahan waktu maupun adu penalti.</li>
+          </ul>
+          <p class="sub">Perolehan poin:</p>
+          <div class="rule-points">
+            <span>Menang = <b>3 poin</b></span>
+            <span>Imbang = <b>1 poin</b></span>
+            <span>Kalah = <b>0 poin</b></span>
+          </div>
+          <p class="sub">Urutan klasemen ditentukan berdasarkan (berurutan):</p>
+          <ol>
+            <li>Poin</li>
+            <li>Selisih gol (produktivitas gol &minus; kebobolan)</li>
+            <li>Produktivitas gol</li>
+            <li>Head to head</li>
+            <li>Koin tos</li>
+          </ol>
+          <p class="sub">Juara hanya 1, yaitu tim di peringkat nomor 1.</p>
+        </div>
+      </div>
+
+      <div class="rule-section">
+        <button class="rule-toggle">
+          <div class="rule-toggle-left"><span class="rule-num">3</span><h4>Peserta</h4></div>
+          <span class="rule-chevron">&#9662;</span>
+        </button>
+        <div class="rule-body">
+          <ol>
+            <li>Peserta adalah pegawai aktif Direktorat Teknologi Informasi dan Komunikasi.</li>
+            <li>Pegawai re-entry masuk ke dalam Subdit Tata Kelola Sistem Informasi.</li>
+            <li>Jika terjadi mutasi selama kompetisi, peserta dihitung sejak TMT SK mutasi.</li>
+            <li>Setiap Subdirektorat mengirimkan daftar semua pemain saat Technical Meeting.</li>
+            <li>Setiap pertandingan, tim mendaftarkan maksimal 12 orang: 5 pemain inti, 7 pemain cadangan.</li>
+            <li>Setiap tim wajib mengirimkan daftar nama pemain inti satu jam sebelum kick off.</li>
+            <li>Seluruh pegawai boleh menjadi pemain mewakili Subdirektoratnya, termasuk panitia, selama tidak mengganggu tugas dan tanggung jawabnya.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="rule-section">
+        <button class="rule-toggle">
+          <div class="rule-toggle-left"><span class="rule-num">4</span><h4>Waktu Pertandingan</h4></div>
+          <span class="rule-chevron">&#9662;</span>
+        </button>
+        <div class="rule-body">
+          <ul>
+            <li>Pertandingan berlangsung Selasa 18 Agustus s.d. Kamis 27 Agustus 2026, dengan 2 pertandingan per hari.</li>
+            <li>Pertandingan pertama: 16.30 &ndash; 17.00 WIB. Pertandingan kedua: 17.01 &ndash; 17.30 WIB.</li>
+            <li>Lama waktu normal: 2 x 10 menit waktu kotor (bola out, waktu tetap berjalan).</li>
+          </ul>
+          <p class="sub">Rincian alokasi waktu:</p>
+          <div class="rule-points">
+            <span>Persiapan tim = <b>7 menit</b></span>
+            <span>Babak 1 = <b>10 menit</b></span>
+            <span>Half time = <b>3 menit</b></span>
+            <span>Babak 2 = <b>10 menit</b></span>
+          </div>
+          <p class="sub">Setiap tim tidak diperbolehkan meminta time out.</p>
+        </div>
+      </div>
+
+      <div class="rule-section">
+        <button class="rule-toggle">
+          <div class="rule-toggle-left"><span class="rule-num">5</span><h4>Tata Tertib Pemain &amp; Pelatih</h4></div>
+          <span class="rule-chevron">&#9662;</span>
+        </button>
+        <div class="rule-body">
+          <ol>
+            <li>Setiap peserta wajib mentaati peraturan yang ditentukan panitia.</li>
+            <li>Kedua tim memakai jersey warna berbeda; jika terlalu mirip salah satu tim memakai rompi panitia (ditentukan koin tos). Penjaga gawang wajib berbeda warna dari kedua tim.</li>
+            <li>Tim wajib hadir 10 menit sebelum kick off; jika tidak hadir dianggap kalah 3-0 untuk tim lawan.</li>
+            <li>Permainan dapat dimulai setelah waktu tunggu 10 menit berakhir dan minimal ada 3 pemain perwakilan tim.</li>
+            <li>Pemain yang tidak memenuhi persyaratan pertandingan tidak boleh bermain sampai persyaratan terpenuhi.</li>
+            <li>Pemain dan pelatih wajib berperilaku sopan; tidak boleh berkata kotor atau bertindak anarkis. Pelanggaran dapat dikenai teguran, kartu kuning/merah, atau walk out.</li>
+            <li>Tim yang mogok karena tidak menerima keputusan wasit dianggap mengundurkan diri (walk out).</li>
+            <li>Tim yang terkena WO pada satu pertandingan dianggap WO sepanjang kompetisi.</li>
+            <li>Pemain cadangan, official, dan pelatih berada di area yang ditentukan dan dilarang melewati garis lapangan.</li>
+            <li>Kuku tidak boleh panjang; dilarang memakai aksesori berbahaya seperti gelang, kalung, cincin, dsb.</li>
+            <li>Pemain yang bermain kasar dan berbahaya diberi peringatan berupa kartu kuning atau kartu merah.</li>
+            <li>Keputusan wasit bersifat final dan tidak dapat diganggu gugat.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="rule-section">
+        <button class="rule-toggle">
+          <div class="rule-toggle-left"><span class="rule-num">6</span><h4>Peraturan Umum Futsal</h4></div>
+          <span class="rule-chevron">&#9662;</span>
+        </button>
+        <div class="rule-body">
+          <ol>
+            <li>Jumlah pemain minimal saat kick off adalah 3 orang; kurang dari itu dianggap walk out.</li>
+            <li>Pergantian pemain dilakukan di area pergantian yang telah ditentukan.</li>
+            <li>Sistem pergantian pemain bebas, tanpa harus meminta instruksi wasit.</li>
+            <li>Kick off boleh dilakukan dengan 1 atau 2 kali sentuhan.</li>
+            <li>Tendangan ke dalam dari bola out dilakukan saat bola diam di garis lapangan, dalam waktu 4 detik (posisi kaki boleh di luar/di dalam lapangan).</li>
+            <li>Penjaga gawang tidak boleh memegang bola lebih dari 4 detik &mdash; pelanggaran dikenai tendangan bebas tidak langsung untuk lawan dari luar kotak penalti.</li>
+            <li>Setelah melepas bola, penjaga gawang tidak boleh menerimanya kembali dari rekan setim sebelum tersentuh pemain lawan, kecuali diterima di wilayah lawan.</li>
+            <li>Setiap pelanggaran dikenai tendangan bebas langsung atau tidak langsung.</li>
+            <li>Pemain yang bermain kasar dan berbahaya dikenai sanksi kartu kuning atau kartu merah.</li>
+            <li>2 kartu kuning pada dua pertandingan beruntun &rarr; pemain dilarang bermain 1 pertandingan berikutnya.</li>
+            <li>Kartu merah &rarr; pemain pengganti menunggu 2 menit (kecuali tim lawan lebih dulu mencetak gol), dan pemain yang terkena kartu merah dilarang bermain di pertandingan berikutnya.</li>
+            <li>6 kali pelanggaran tim dalam satu pertandingan &rarr; tim lawan mendapat tendangan penalti kedua.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="rule-section">
+        <button class="rule-toggle">
+          <div class="rule-toggle-left"><span class="rule-num">7</span><h4>Ketentuan Lain</h4></div>
+          <span class="rule-chevron">&#9662;</span>
+        </button>
+        <div class="rule-body">
+          <ol>
+            <li>Jika terjadi gangguan atau keadaan memaksa sebelum/saat pertandingan, panitia dapat menghentikan atau menunda pertandingan sesuai kesepakatan panitia dan tim.</li>
+            <li>Pertandingan dapat dilanjutkan atas pertimbangan wasit dan panitia penyelenggara pada waktu yang ditentukan.</li>
+            <li>Keputusan panitia dapat berubah sewaktu-waktu jika dianggap perlu menyesuaikan situasi dan kondisi.</li>
+            <li>Aturan lain yang tidak diatur di sini mengikuti aturan FIFA.</li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -980,6 +1193,14 @@ function attachScheduleListeners(){
     });
   });
 }
+
+/* ---------- Peraturan (accordion) ---------- */
+document.querySelectorAll('.rule-toggle').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    btn.closest('.rule-section').classList.toggle('open');
+  });
+});
+document.querySelector('.rule-section')?.classList.add('open');
 
 updateAuthUI();
 renderAll();
